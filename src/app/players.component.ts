@@ -1,19 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { Player } from './player.model';
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { PlayerService } from './player.service';
+import { Player } from './player.model';
 
 @Component({
   selector: 'app-players',
+  standalone: true,
+  imports: [CommonModule, FormsModule],
   templateUrl: './players.component.html',
   styleUrls: ['./players.component.scss']
 })
-export class PlayersComponent implements OnInit {
+export class PlayersComponent {
   players: Player[] = [];
   selectedPlayer: Player = this.emptyPlayer();
 
-  constructor(private playerService: PlayerService) {}
-
-  ngOnInit(): void {
+  constructor(private playerService: PlayerService) {
     this.loadPlayers();
   }
 
