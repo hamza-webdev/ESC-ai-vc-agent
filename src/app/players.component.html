@@ -1,0 +1,20 @@
+<div class="players-container">
+  <h2>Liste des joueurs</h2>
+  <ul>
+    <li *ngFor="let player of players">
+      <strong>{{ player.name }}</strong> (#{{ player.number }}) - {{ player.position }}
+      <button (click)="editPlayer(player)">Modifier</button>
+      <button (click)="deletePlayer(player.id)">Supprimer</button>
+    </li>
+  </ul>
+
+  <h3>Ajouter / Modifier un joueur</h3>
+  <form (ngSubmit)="onSubmit()" #playerForm="ngForm">
+    <input name="name" [(ngModel)]="selectedPlayer.name" placeholder="Nom" required />
+    <input name="number" type="number" [(ngModel)]="selectedPlayer.number" placeholder="Numéro" required />
+    <input name="position" [(ngModel)]="selectedPlayer.position" placeholder="Poste" required />
+    <input name="age" type="number" [(ngModel)]="selectedPlayer.age" placeholder="Âge" />
+    <button type="submit">{{ selectedPlayer.id ? 'Mettre à jour' : 'Ajouter' }}</button>
+    <button type="button" (click)="resetForm()">Annuler</button>
+  </form>
+</div>
